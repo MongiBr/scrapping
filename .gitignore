@@ -1,0 +1,22 @@
+# Dependency
+node_modules/
+
+# env variable
+.env
+.env.local
+
+# Cache
+.cache
+
+# 'npm pack' output
+*.tgz
+
+# builds
+build/Release
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
