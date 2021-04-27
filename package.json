@@ -1,5 +1,5 @@
 {
-  "name": "express-starter",
+  "name": "express-starter-simple",
   "version": "1.0.0",
   "description": "Express API starter",
   "main": "app.js",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/dhairya137/express-starter.git"
   },
   "author": "Dhairya Patel",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dhairya137/express-starter/issues"
   },
