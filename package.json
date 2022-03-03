@@ -27,10 +27,22 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "axios": "^0.26.0",
+    "compress-images": "^2.0.5",
     "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "csv-stringify": "^6.0.5",
+    "csv-writer": "^1.6.0",
+    "csvtojson": "^2.0.10",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "fast-csv": "^4.3.6",
+    "fs": "0.0.1-security",
     "helmet": "^4.5.0",
-    "morgan": "^1.10.0"
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "morgan": "^1.10.0",
+    "request": "^2.88.2",
+    "uuid": "^7.0.3"
   }
 }

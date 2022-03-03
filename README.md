@@ -1,4 +1,20 @@
-# Express Starter API
+# Scrapping apis - nodeJS
+
+Gang - G&G application:
+
+- get all products from XBOX | NINTENDO | PS
+- create CSV files
+
+How to use:
+
+- clone this project or download the zip
+- open the folder and
+  run npm install to install all packages
+- run this app with npm start
+- go to the browser
+- xbox : http://localhost/api/scrapping/xbox and wait the file downloaded
+- nintendo : http://localhost/api/scrapping/nintendo and wait the file downloaded
+- ps : http://localhost/api/scrapping/ps and wait the file downloaded
 
 Packages Used:
 
