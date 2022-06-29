@@ -1,12 +1,7 @@
 const express = require("express");
-
 const router = express.Router();
-const xboxController = require("../controllers/xbox.controller");
-const nintendoController = require("../controllers/nintendo.controller");
-const psController = require("../controllers/ps.controller");
+const annContrl = require("../controllers/announce.controller");
 
-router.get("/xbox", xboxController.getXboxProducts);
-router.get("/nintendo", nintendoController.getNintendoProducts);
-router.get("/ps", psController.getPsroducts);
+router.post("/announces", annContrl.exportAnnonces);
 
 module.exports = router;
