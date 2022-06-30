@@ -2,14 +2,15 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
-
+var bodyparser = require("body-parser");
 require("dotenv").config();
 
 const router = require("./routes");
 
 const app = express();
 app.use(express.static("public/"));
-
+app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.json());
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(cors());
