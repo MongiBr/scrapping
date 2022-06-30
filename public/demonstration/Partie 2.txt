@@ -1,0 +1,23 @@
+
+//code .htm que permet de récuperer les num de tel 
+
+var data = {phone:"",link:""}
+
+$('button[title="voir le numéro"]').click();
+
+
+data.link=window.location.href;
+
+ 
+
+setTimeout(function(){
+    console.log('$(a[title="appeler"])', $('a[title="appeler"]').text())
+    data.phone=$('a[title="appeler"]').text();
+    $.post("http://localhost:5000/api/scrapping/addPhoneToCsv", data,  function(res) { window.open('http://localhost:5000/api/scrapping/annonce')});
+//   window.close();
+},3000)
+
+setTimeout(function(){
+  
+window.close();
+},4000)

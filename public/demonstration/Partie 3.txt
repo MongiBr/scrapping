@@ -1,0 +1,4 @@
+
+// script n3 
+
+ $.get("http://localhost:5000/api/scrapping/annonce",  function(res) {window.open(res); window.close()});
