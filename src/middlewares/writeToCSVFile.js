@@ -36,10 +36,10 @@ const addPhoneToCsv = async function (pathFile, data, response) {
 };
 
 const getFromCsv = async function (pathFile, response) {
-  const jsonArray = await csv().fromFile(pathFile);
-  let ary = json2array(jsonArray);
+  // const jsonArray = await csv().fromFile(pathFile);
+  // let ary = json2array(jsonArray);
 
-  response.json(ary[0].linkAnnonce);
+  // response.json(ary[0].linkAnnonce);
 };
 
 async function writeToCSVFilePhone(announces, file) {
