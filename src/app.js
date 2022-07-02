@@ -2,7 +2,7 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 const request = require("request");
-const { JSDOM } = require("jsdom");
+
 const morgan = require("morgan");
 var bodyparser = require("body-parser");
 require("dotenv").config();
@@ -22,7 +22,7 @@ app.get("/", async (req, res) => {});
 
 app.use("/api", router);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://51.38.38.214:${PORT}`);
 });
