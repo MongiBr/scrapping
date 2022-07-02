@@ -18,7 +18,9 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-app.get("/", async (req, res) => {});
+app.get("/", async (req, res) => {
+  res.send("Server is running!");
+});
 
 app.use("/api", router);
 
