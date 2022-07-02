@@ -1,10 +1,12 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
+const request = require("request");
+const { JSDOM } = require("jsdom");
 const morgan = require("morgan");
 var bodyparser = require("body-parser");
 require("dotenv").config();
-
+const puppeteer = require("puppeteer");
 const router = require("./routes");
 
 const app = express();
@@ -16,11 +18,7 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json({
-    message: "Hello World",
-  });
-});
+app.get("/", async (req, res) => {});
 
 app.use("/api", router);
 

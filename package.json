@@ -42,8 +42,11 @@
     "helmet": "^4.5.0",
     "http": "0.0.1-security",
     "https": "^1.0.0",
+    "jsdom": "^20.0.0",
     "json2csv": "^5.0.7",
+    "lodash": "^4.17.21",
     "morgan": "^1.10.0",
+    "puppeteer": "^15.3.0",
     "request": "^2.88.2",
     "uuid": "^7.0.3"
   }
