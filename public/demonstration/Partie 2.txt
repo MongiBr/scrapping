@@ -11,7 +11,7 @@ data.link=window.location.href;
  
 
 setTimeout(function(){
-    console.log('$(a[title="appeler"])', $('a[title="appeler"]').text())
+    //console.log('$(a[title="appeler"])', $('a[title="appeler"]').text())
     data.phone=$('a[title="appeler"]').text();
     $.post("http://localhost:5000/api/scrapping/addPhoneToCsv", data,  function(res) { window.open('http://localhost:5000/api/scrapping/annonce')});
 //   window.close();

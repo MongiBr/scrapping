@@ -4,8 +4,6 @@ var i=0;
  var res=[];
  $('div[class="styles_adCard__HQRFN styles_classified__rnsg4"] ').each(function(kk,kki){
     var obj = {price:"",linkAnnonce:"",typeBiens:"",title:"",city:"",postalCode:"",phone:""};
-    // obj.price = $(this).find('span[class="_1hnil 35DXM 1-TTU"]').text();
-    console.log('span', $(this).find('span[class="_137P- _3j0OU P4PEa"] span').text())
     obj.price = $(this).find('span[class="_137P- _3j0OU P4PEa"] span').text();
     var link = $(this).find('a[data-qa-id="aditem_container"]').attr('href');
     obj.linkAnnonce = "https://www.leboncoin.fr"+link;
@@ -26,15 +24,15 @@ var i=0;
     obj.city = town;
     obj.postalCode = cp;
      
-     $.post("http://localhost:5000/api/scrapping/announces", obj,  function(res) { console.log(res)});
+    
   
  
 //   window.open("https://www.leboncoin.fr/"+link)
+    res[i] = obj;
     i++;
  });
  
- 
-
+ $.post("http://localhost:5000/api/scrapping/announces", {announces:res},  function(res) { console.log(res)});
   
     // for(let x of linkAnnonce){
     //     console.log(x);
