@@ -3,7 +3,7 @@ module.exports = {
       {
         name: "scrapping",
         script: "./src/app.js",
-        watch: true,
+        watch: false,
         env: {
           "PORT": "5000",
         }

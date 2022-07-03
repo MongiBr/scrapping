@@ -10,9 +10,13 @@ function replaceAll(string, search, replace) {
 }
 const exportAnnonces = async (req, res) => {
   try {
-    //console.log(req.body);
-    let data = req.body;
-    const jsonArray = await csv().fromFile("public/static/get_urls.csv");
+    
+    
+let data = req.body;
+console.log('data', data);
+if(data && data.announces && data.announces.length>0){
+console.log('data2', data.announces);    
+const jsonArray = await csv().fromFile("public/static/get_urls.csv");
     let urls = json2array(jsonArray);
 
     const fileData = JSON.parse(fs.readFileSync("announces.json"));
@@ -20,12 +24,13 @@ const exportAnnonces = async (req, res) => {
       let cityAndUser = urls.find(
         (data) =>
           replaceAll(data.url, "|", ",").replace("https://www.leboncoin.fr/recherche/", "") ==
-          item.linkRecherche.replace("https://www.leboncoin.fr/recherche", "")
+          decodeURI(item.linkRecherche).replace("https://www.leboncoin.fr/recherche", "")
       );
       Object.assign(item, { city_id: cityAndUser.city_id, user_id: cityAndUser.user_id });
       fileData.push(item);
     });
     fs.writeFileSync("announces.json", JSON.stringify(_.uniqWith(fileData, _.isEqual), null, 2));
+}
     return res.send("Line added to csv");
   } catch (err) {
     console.log(err);
@@ -42,7 +47,8 @@ const getUrls = async (req, res) => {
       let i = 0;
 
       if (locations) {
-        let index = ary.findIndex((x) => replaceAll(x.url.replace("https://www.leboncoin.fr/recherche/", ""), "|", ",").includes(locations));
+	console.log('locations', encodeURI(locations));
+        let index = ary.findIndex((x) => replaceAll(x.url.replace("https://www.leboncoin.fr/recherche/", ""), "|", ",").includes(encodeURI(locations)));
 
         console.log("index", index);
         if (index != -1) {
