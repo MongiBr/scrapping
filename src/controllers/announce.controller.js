@@ -69,6 +69,7 @@ const removeDuplicateAnnonces = async (req, res) => {
       if (!fileData[i].phone && fileData[i].linkAnnonce.includes(data.link)) {
         fileData[i].phone = data.phone;
         fileDataPhone.push(fileData[i]);
+	console.log('phone added');
         fs.writeFileSync("announcesWithPhone.json", JSON.stringify(_.uniqWith(fileDataPhone, _.isEqual), null, 1));
       }
     }
@@ -105,9 +106,10 @@ const getAnnonce = async (req, res) => {
           };
           apiCall(params);
         }
-        fs.writeFileSync("announcesWithPhone.json", JSON.stringify([], null, 1));
-        res.send("Scrapping done!");
+        //fs.writeFileSync("announcesWithPhone.json", JSON.stringify([], null, 1));
+        
       }
+res.send("Scrapping done!");
     }
   } catch (err) {
     console.log(err);
@@ -118,7 +120,8 @@ const sendDataToserver = async (req, res) => {
   try {
     const fileData = JSON.parse(fs.readFileSync("announcesWithPhone.json"));
     for (let i = 0; i < fileData.length; i++) {
-      await apiCall(fileData[i]);
+      //await apiCall(fileData[i]);
+	console.log('data');
     }
     res.send("done");
   } catch (err) {

@@ -1,1 +1,134 @@
-[]
+[
+  {
+    "price": "150 000 €",
+    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2159314043.htm",
+    "typeBiens": "ventes_immobilieres",
+    "title": "Appartement 60 m2",
+    "city": "Ifs",
+    "postalCode": "14123",
+    "phone": "",
+    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Ifs_14123&owner_type=private&real_estate_type=1,2,",
+    "city_id": "4784",
+    "user_id": "11247"
+  },
+  {
+    "price": "120 000 €",
+    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2168589875.htm",
+    "typeBiens": "ventes_immobilieres",
+    "title": "Appartement 2 pièces (Vue magnifique)",
+    "city": "Fleury-sur-Orne",
+    "postalCode": "14123",
+    "phone": "",
+    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Fleury-sur-Orne_14123&owner_type=private&real_estate_type=1,2,",
+    "city_id": "4711",
+    "user_id": "11247"
+  },
+  {
+    "price": "125 000 €",
+    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2185595581.htm",
+    "typeBiens": "ventes_immobilieres",
+    "title": "Appartement F3",
+    "city": "Cormelles-le-Royal",
+    "postalCode": "14123",
+    "phone": "",
+    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Cormelles-le-Royal_14123&owner_type=private&real_estate_type=1,2,",
+    "city_id": "4587",
+    "user_id": "11247"
+  },
+  {
+    "price": "70 000 €",
+    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2183997295.htm",
+    "typeBiens": "ventes_immobilieres",
+    "title": "à vendre Studio à Cormelles-le-Royal",
+    "city": "Cormelles-le-Royal",
+    "postalCode": "14123",
+    "phone": "",
+    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Cormelles-le-Royal_14123&owner_type=private&real_estate_type=1,2,",
+    "city_id": "4587",
+    "user_id": "11247"
+  },
+  {
+    "price": "68 500 €",
+    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2183268282.htm",
+    "typeBiens": "ventes_immobilieres",
+    "title": "Studio 26m2",
+    "city": "Cormelles-le-Royal",
+    "postalCode": "14123",
+    "phone": "",
+    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Cormelles-le-Royal_14123&owner_type=private&real_estate_type=1,2,",
+    "city_id": "4587",
+    "user_id": "11247"
+  },
+  {
+    "price": "100 000 €",
+    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2180453146.htm",
+    "typeBiens": "ventes_immobilieres",
+    "title": "Cormelles le royal-",
+    "city": "Cormelles-le-Royal",
+    "postalCode": "14123",
+    "phone": "",
+    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Cormelles-le-Royal_14123&owner_type=private&real_estate_type=1,2,",
+    "city_id": "4587",
+    "user_id": "11247"
+  },
+  {
+    "price": "80 000 €",
+    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2180143142.htm",
+    "typeBiens": "ventes_immobilieres",
+    "title": "Cormelles le royal-",
+    "city": "Cormelles-le-Royal",
+    "postalCode": "14123",
+    "phone": "",
+    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Cormelles-le-Royal_14123&owner_type=private&real_estate_type=1,2,",
+    "city_id": "4587",
+    "user_id": "11247"
+  },
+  {
+    "price": "350 000 €",
+    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2174051269.htm",
+    "typeBiens": "ventes_immobilieres",
+    "title": "Maison traditionnelle de 1989",
+    "city": "Cormelles-le-Royal",
+    "postalCode": "14123",
+    "phone": "",
+    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Cormelles-le-Royal_14123&owner_type=private&real_estate_type=1,2,",
+    "city_id": "4587",
+    "user_id": "11247"
+  },
+  {
+    "price": "",
+    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2144423193.htm",
+    "typeBiens": "ventes_immobilieres",
+    "title": "Superbe maison 6 pièces baron sur odon",
+    "city": "Baron-sur-Odon",
+    "postalCode": "14210",
+    "phone": "",
+    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Baron-sur-Odon_14210&owner_type=private&real_estate_type=1,2,",
+    "city_id": "4552",
+    "user_id": "11247"
+  },
+  {
+    "price": "245 000 €",
+    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2169208160.htm",
+    "typeBiens": "ventes_immobilieres",
+    "title": "Maison 87 m2",
+    "city": "Baron-sur-Odon",
+    "postalCode": "14210",
+    "phone": "",
+    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Baron-sur-Odon_14210&owner_type=private&real_estate_type=1,2,",
+    "city_id": "4552",
+    "user_id": "11247"
+  },
+  {
+    "price": "279 000 €",
+    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2180489519.htm",
+    "typeBiens": "ventes_immobilieres",
+    "title": "Maison 145 metres carrés au sol",
+    "city": "Amayé-sur-Orne",
+    "postalCode": "14210",
+    "phone": "",
+    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Amay%C3%A9-sur-Orne_14210&owner_type=private&real_estate_type=1,2,",
+    "city_id": "5065",
+    "user_id": "11247"
+  }
+]
