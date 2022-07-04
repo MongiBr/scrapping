@@ -74,6 +74,20 @@ const removeDuplicateAnnonces = async (req, res) => {
         fileData[i].phone = data.phone;
         fileDataPhone.push(fileData[i]);
         console.log("phone added");
+        let params = {
+          id: Date.parse(new Date()) / 1000,
+          linkAnnonce: fileData[i].linkAnnonce,
+          typeBiens: fileData[i].typeBiens,
+          title: fileData[i].title,
+          city: fileData[i].city,
+          postalCode: fileData[i].postalCode,
+          phone: data.phone,
+          price: fileData[i].price,
+          city_id: fileData[i].city_id,
+          user_id: fileData[i].user_id,
+        };
+        await apiCall(params);
+
         fs.writeFileSync("announcesWithPhone.json", JSON.stringify(_.uniqWith(fileDataPhone, _.isEqual), null, 2));
         fileData.splice(i, 1);
       }
@@ -97,21 +111,21 @@ const getAnnonce = async (req, res) => {
       } else {
         const annonces = JSON.parse(fs.readFileSync("announcesWithPhone.json"));
         if (annonces && annonces.length > 0) {
-          for (let i = 0; i < annonces.length; i++) {
-            let params = {
-              id: Date.parse(new Date()) / 1000,
-              linkAnnonce: annonces[i].linkAnnonce,
-              typeBiens: annonces[i].typeBiens,
-              title: annonces[i].title,
-              city: annonces[i].city,
-              postalCode: annonces[i].postalCode,
-              phone: annonces[i].phone,
-              price: annonces[i].price,
-              city_id: annonces[i].city_id,
-              user_id: annonces[i].user_id,
-            };
-            apiCall(params);
-          }
+          // for (let i = 0; i < annonces.length; i++) {
+          //   let params = {
+          //     id: Date.parse(new Date()) / 1000,
+          //     linkAnnonce: annonces[i].linkAnnonce,
+          //     typeBiens: annonces[i].typeBiens,
+          //     title: annonces[i].title,
+          //     city: annonces[i].city,
+          //     postalCode: annonces[i].postalCode,
+          //     phone: annonces[i].phone,
+          //     price: annonces[i].price,
+          //     city_id: annonces[i].city_id,
+          //     user_id: annonces[i].user_id,
+          //   };
+          //   apiCall(params);
+          // }
           fs.writeFileSync("announcesWithPhone.json", JSON.stringify([], null, 1));
           //fs.writeFileSync("announces.json", [], null, 2);
         }
