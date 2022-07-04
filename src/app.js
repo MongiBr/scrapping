@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", async (req, res) => {
-  res.send("Server is running!");
+  res.send("Server texto is running!");
 });
 
 app.use("/api", router);
