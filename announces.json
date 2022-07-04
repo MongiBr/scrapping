@@ -1,38 +1,14 @@
 [
   {
-    "price": "248 000 €",
-    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2169298499.htm",
+    "price": "312 300 €",
+    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2178072627.htm",
     "typeBiens": "ventes_immobilieres",
-    "title": "Villa T4 avec jardin 90m2",
-    "city": "Sisco",
-    "postalCode": "20233",
+    "title": "Charmant 3 pièces neuf",
+    "city": "Villebon-sur-Yvette",
+    "postalCode": "91140",
     "phone": "",
-    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Sisco_20233&owner_type=private&real_estate_type=1,2,3,4,",
-    "city_id": "36456",
-    "user_id": "66257"
-  },
-  {
-    "price": "248 000 €",
-    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2162759805.htm",
-    "typeBiens": "ventes_immobilieres",
-    "title": "Vend villa type T4 commune de sisco",
-    "city": "SiscoFicaia",
-    "postalCode": "20233",
-    "phone": "",
-    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Sisco_20233&owner_type=private&real_estate_type=1,2,3,4,",
-    "city_id": "36456",
-    "user_id": "66257"
-  },
-  {
-    "price": "248 900 €",
-    "linkAnnonce": "https://www.leboncoin.fr/ventes_immobilieres/2160680785.htm",
-    "typeBiens": "ventes_immobilieres",
-    "title": "Villa t4 neuve sisco cap corse",
-    "city": "Sisco",
-    "postalCode": "20233",
-    "phone": "",
-    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Sisco_20233&owner_type=private&real_estate_type=1,2,3,4,",
-    "city_id": "36456",
-    "user_id": "66257"
+    "linkRecherche": "https://www.leboncoin.fr/recherche?category=9&locations=Villebon-sur-Yvette_91140&owner_type=private&real_estate_type=1,2,3,",
+    "city_id": "35708",
+    "user_id": "99023"
   }
 ]
