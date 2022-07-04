@@ -10,7 +10,6 @@ function replaceAll(string, search, replace) {
 }
 const exportAnnonces = async (req, res) => {
   try {
-    //console.log(req.body);
     let data = req.body;
     if (data && data.announces && data.announces.length > 0) {
       const jsonArray = await csv().fromFile("public/static/get_urls.csv");
@@ -28,6 +27,7 @@ const exportAnnonces = async (req, res) => {
       });
       fs.writeFileSync("announces.json", JSON.stringify(_.uniqWith(fileData, _.isEqual), null, 2));
     }
+
     return res.send("Line added to csv");
   } catch (err) {
     console.log(err);
