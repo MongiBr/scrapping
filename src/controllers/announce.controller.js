@@ -45,11 +45,11 @@ const getUrls = async (req, res) => {
 
       if (locations) {
         let index = ary.findIndex((x) =>
-          replaceAll(replaceAll(x.url.replace("https://www.leboncoin.fr/recherche/", ""), "|", ","), '+', '%20').includes(encodeURI(locations))
+          replaceAll(replaceAll(x.url.replace("https://www.leboncoin.fr/recherche/", ""), "|", ","), "+", "%20").includes(encodeURI(locations))
         );
 
         console.log("index", index);
-        if (index != -1 && ary[index+1]) {
+        if (index != -1 && ary[index + 1]) {
           await res.send(replaceAll(ary[index + 1].url, "|", ","));
         } else {
           res.send("END");
@@ -74,11 +74,11 @@ const removeDuplicateAnnonces = async (req, res) => {
         fileData[i].phone = data.phone;
         fileDataPhone.push(fileData[i]);
         console.log("phone added");
-        fs.writeFileSync("announcesWithPhone.json", JSON.stringify(_.uniqWith(fileDataPhone, _.isEqual), null, 1));
-	fileData.splice(i,1);
+        fs.writeFileSync("announcesWithPhone.json", JSON.stringify(_.uniqWith(fileDataPhone, _.isEqual), null, 2));
+        fileData.splice(i, 1);
       }
     }
-fs.writeFileSync("announcesWithPhone.json", JSON.stringify(_.uniqWith(fileData, _.isEqual), null, 1));
+    fs.writeFileSync("announces.json", JSON.stringify(_.uniqWith(fileData, _.isEqual), null, 2));
 
     res.send("Phone added to CSV");
   } catch (err) {
@@ -88,39 +88,37 @@ fs.writeFileSync("announcesWithPhone.json", JSON.stringify(_.uniqWith(fileData, 
 
 const getAnnonce = async (req, res) => {
   try {
-	if(req.query && req.query.next){
+    if (req.query && req.query.next) {
+      const fileData = JSON.parse(fs.readFileSync("announces.json"));
+      if (fileData[0]) {
+        let link = fileData[0].linkAnnonce;
 
-   		 const fileData = JSON.parse(fs.readFileSync("announces.json"));
-    		if (fileData[0]) {
-      		let link = fileData[0].linkAnnonce;
-      	
-      		
-      		res.status(200).json({"link" : link});
-    		} else {
-      			const annonces = JSON.parse(fs.readFileSync("announcesWithPhone.json"));
-      			if (annonces && annonces.length > 0) {
-        		for (let i = 0; i < annonces.length; i++) {
-          			let params = {
-            				id: Date.parse(new Date()) / 1000,
-            				linkAnnonce: annonces[i].linkAnnonce,
-            				typeBiens: annonces[i].typeBiens,
-            				title: annonces[i].title,
-            				city: annonces[i].city,
-            				postalCode: annonces[i].postalCode,
-            				phone: annonces[i].phone,
-            				price: annonces[i].price,
-            				city_id: annonces[i].city_id,
-            				user_id: annonces[i].user_id,
-          					};
-          		apiCall(params);
-        		}
-        //fs.writeFileSync("announcesWithPhone.json", JSON.stringify([], null, 1));
-      		}
-      res.send("Scrapping done!");
-
+        res.status(200).json({ link: link });
+      } else {
+        const annonces = JSON.parse(fs.readFileSync("announcesWithPhone.json"));
+        if (annonces && annonces.length > 0) {
+          for (let i = 0; i < annonces.length; i++) {
+            let params = {
+              id: Date.parse(new Date()) / 1000,
+              linkAnnonce: annonces[i].linkAnnonce,
+              typeBiens: annonces[i].typeBiens,
+              title: annonces[i].title,
+              city: annonces[i].city,
+              postalCode: annonces[i].postalCode,
+              phone: annonces[i].phone,
+              price: annonces[i].price,
+              city_id: annonces[i].city_id,
+              user_id: annonces[i].user_id,
+            };
+            apiCall(params);
+          }
+          //fs.writeFileSync("announcesWithPhone.json", JSON.stringify([], null, 1));
+        }
+        res.send("Scrapping done!");
+      }
+    } else {
+      res.send("next api");
     }
-}else{
-res.send('next api');}
   } catch (err) {
     console.log(err);
   }
