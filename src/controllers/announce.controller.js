@@ -45,8 +45,8 @@ const getUrls = async (req, res) => {
 
       if (locations) {
         let index = ary.findIndex((x) =>
-          replaceAll(replaceAll(replaceAll(x.url.replace("https://www.leboncoin.fr/recherche/", ""), "|", ","), "+", "%20"), "%27", "%2527").includes(
-            "=" + encodeURI(locations)
+          replaceAll(replaceAll(x.url.replace("https://www.leboncoin.fr/recherche/", ""), "|", ","), "+", "%20").includes(
+            "=" + replaceAll(encodeURI(locations), "%2527", "%27")
           )
         );
 
