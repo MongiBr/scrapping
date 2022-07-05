@@ -73,7 +73,7 @@ const removeDuplicateAnnonces = async (req, res) => {
 
     const fileData = JSON.parse(fs.readFileSync("announces.json"));
     for (let i = 0; i < fileData.length; i++) {
-      if (!fileData[i].phone && fileData[i].linkAnnonce.includes(data.link)) {
+      if (!fileData[i].phone && data && data.link && data.phone && fileData[i].linkAnnonce.includes(data.link)) {
         fileData[i].phone = data.phone;
         fileDataPhone.push(fileData[i]);
         console.log("phone added");
@@ -84,16 +84,17 @@ const removeDuplicateAnnonces = async (req, res) => {
           title: fileData[i].title,
           city: fileData[i].city,
           postalCode: fileData[i].postalCode,
-          phone: data.phone,
-          price: fileData[i].price,
+          phone: (replaceAll(data.phone, " " , "")),
+          price: (replaceAll(fileData[i].price, " ", "").replace('€','')),
           city_id: fileData[i].city_id,
           user_id: fileData[i].user_id,
         };
         await apiCall(params);
 
         fs.writeFileSync("announcesWithPhone.json", JSON.stringify(_.uniqWith(fileDataPhone, _.isEqual), null, 2));
-        fileData.splice(i, 1);
+        
       }
+	fileData.splice(i,1);
     }
     fs.writeFileSync("announces.json", JSON.stringify(_.uniqWith(fileData, _.isEqual), null, 2));
 
@@ -164,7 +165,7 @@ const apiCall = async (data) => {
       user_id: data.user_id, // ID user (user_id) récupéré lors du get-urls.php
       city_id: data.city_id, // ID city (city_id) récupéré lors du get-urls.php
       url: data.linkAnnonce, // URL de l'annonce
-      price: data.price ? data.price.replace(" €", "") : "", // prix du bien
+      price: data.price ? data.price : "", // prix du bien
       phone: data.phone, // Numéro de tel
       type: data.typeBiens, // Type de bien (Appartement, Maison, Parking ...)
       provider: "leboncoin",
