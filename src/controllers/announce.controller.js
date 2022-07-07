@@ -2,7 +2,7 @@ const { writeToCSVFile, addPhoneToCsv, getFromCsv } = require("../middlewares/wr
 const fs = require("fs");
 var _ = require("lodash");
 const { default: axios } = require("axios");
-
+var moment = require("moment");
 const csv = require("csvtojson");
 const json2csv = require("json2csv").parse;
 function replaceAll(string, search, replace) {
@@ -17,7 +17,7 @@ const exportAnnonces = async (req, res) => {
 
       const fileData = JSON.parse(fs.readFileSync("announces.json"));
       await data.announces.map((item) => {
-          let str = item.linkRecherche.replace("https://www.leboncoin.fr/recherche", "");
+        let str = item.linkRecherche.replace("https://www.leboncoin.fr/recherche", "");
         let lengthStr = str.length;
         let n = str.substring(str.indexOf("locations=") + 10, lengthStr);
         let lastStr = n.substring(0, n.indexOf("&"));
@@ -60,17 +60,31 @@ const getUrls = async (req, res) => {
         );
 
         console.log("index", index);
-        if (index != -1 && ary[index + 1]) {
-          await res.send(replaceAll(ary[index + 1].url, "|", ","));
+        if (index != -1 && ary[index + 5] && (index + 1) % 5 == 0) {
+          let result = [];
+          for (let i = index + 1; i < index + 6; i++) {
+            if (ary[i].url) {
+              result.push({ link: replaceAll(ary[i].url, "|", ",") });
+            }
+          }
+          await res.status(200).json(result);
+        } else if ((index + 1) % 5 != 0) {
+          res.send("wait...");
         } else {
           res.send("END");
         }
       } else {
-        await res.send(replaceAll(ary[0].url, "|", ","));
+        let result = [];
+        for (let i = 0; i < 5; i++) {
+          if (ary[i].url) {
+            result.push({ link: replaceAll(ary[i].url, "|", ",") });
+          }
+        }
+        await res.status(200).json(result);
       }
-    }else{
-res.send("script 1 done!");
-}
+    } else {
+      res.send("script 1 done!");
+    }
   } catch (err) {
     console.log(err);
   }
@@ -82,35 +96,41 @@ const removeDuplicateAnnonces = async (req, res) => {
     const fileDataPhone = JSON.parse(fs.readFileSync("announcesWithPhone.json"));
 
     const fileData = JSON.parse(fs.readFileSync("announces.json"));
-let index =null;    
-for (let i = 0; i < fileData.length; i++) {
-	
-      if (!fileData[i].phone && data && data.link && data.phone && fileData[i].linkAnnonce.includes(data.link)) {
-        fileData[i].phone = data.phone;
-        fileDataPhone.push(fileData[i]);
-        console.log("phone added");
-        let params = {
-          id: Date.parse(new Date()) / 1000,
-          linkAnnonce: fileData[i].linkAnnonce,
-          typeBiens: fileData[i].typeBiens,
-          title: fileData[i].title,
-          city: fileData[i].city,
-          postalCode: fileData[i].postalCode,
-          phone: (replaceAll(data.phone, " " , "")),
-          price: (replaceAll(fileData[i].price, " ", "").replace('€','')),
-          city_id: fileData[i].city_id,
-          user_id: fileData[i].user_id,
-        };
-        await apiCall(params);
+    let index = null;
+    moment.locale("fr");
+    let str = data.date;
+    let newStr = str.substring(0, 10).split("/");
+    let date = newStr[2] + "-" + newStr[1] + "-" + newStr[0];
 
-        fs.writeFileSync("announcesWithPhone.json", JSON.stringify(_.uniqWith(fileDataPhone, _.isEqual), null, 2));
+    let currentDate = moment(new Date());
+    let compare = currentDate.diff(moment(date), "days");
+    if (compare <= 8) {
+      for (let i = 0; i < fileData.length; i++) {
+        if (!fileData[i].phone && data && data.link && data.phone && fileData[i].linkAnnonce.includes(data.link)) {
+          fileData[i].phone = data.phone;
+          fileDataPhone.push(fileData[i]);
+          console.log("phone added");
+          let params = {
+            id: Date.parse(new Date()) / 1000,
+            linkAnnonce: fileData[i].linkAnnonce,
+            typeBiens: fileData[i].typeBiens,
+            title: fileData[i].title,
+            city: fileData[i].city,
+            postalCode: fileData[i].postalCode,
+            phone: replaceAll(data.phone, " ", ""),
+            price: replaceAll(fileData[i].price, " ", "").replace("€", ""),
+            city_id: fileData[i].city_id,
+            user_id: fileData[i].user_id,
+          };
+          await apiCall(params);
 
-        
+          fs.writeFileSync("announcesWithPhone.json", JSON.stringify(_.uniqWith(fileDataPhone, _.isEqual), null, 2));
+        }
+        if (data.link && fileData[i].linkAnnonce.includes(data.link)) {
+          await fileData.splice(i, 1);
+        }
+        //await fileData.splice(i,1);
       }
-  if(data.link  && fileData[i].linkAnnonce.includes(data.link)){
-        await fileData.splice(i, 1);
-      }
-	//await fileData.splice(i,1);
     }
     fs.writeFileSync("announces.json", JSON.stringify(_.uniqWith(fileData, _.isEqual), null, 2));
 
