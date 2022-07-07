@@ -17,11 +17,19 @@ const exportAnnonces = async (req, res) => {
 
       const fileData = JSON.parse(fs.readFileSync("announces.json"));
       await data.announces.map((item) => {
-        let cityAndUser = urls.find(
-          (data) =>
-            replaceAll(data.url, "|", ",").replace("https://www.leboncoin.fr/recherche/", "") ==
-            item.linkRecherche.replace("https://www.leboncoin.fr/recherche", "")
+          let str = item.linkRecherche.replace("https://www.leboncoin.fr/recherche", "");
+        let lengthStr = str.length;
+        let n = str.substring(str.indexOf("locations=") + 10, lengthStr);
+        let lastStr = n.substring(0, n.indexOf("&"));
+
+        let cityAndUser = urls.find((data) =>
+          replaceAll((data.url.replace("https://www.leboncoin.fr/recherche/", ""), "|", ",")).includes(
+            "=" + replaceAll(replaceAll(encodeURI(lastStr), "'", "%27"))
+          )
         );
+        if (!cityAndUser) {
+          cityAndUser = urls.find((data) => data.url.includes(lastStr));
+        }
         Object.assign(item, { city_id: cityAndUser.city_id, user_id: cityAndUser.user_id });
         fileData.push(item);
       });
@@ -60,7 +68,9 @@ const getUrls = async (req, res) => {
       } else {
         await res.send(replaceAll(ary[0].url, "|", ","));
       }
-    }
+    }else{
+res.send("script 1 done!");
+}
   } catch (err) {
     console.log(err);
   }
@@ -72,7 +82,9 @@ const removeDuplicateAnnonces = async (req, res) => {
     const fileDataPhone = JSON.parse(fs.readFileSync("announcesWithPhone.json"));
 
     const fileData = JSON.parse(fs.readFileSync("announces.json"));
-    for (let i = 0; i < fileData.length; i++) {
+let index =null;    
+for (let i = 0; i < fileData.length; i++) {
+	
       if (!fileData[i].phone && data && data.link && data.phone && fileData[i].linkAnnonce.includes(data.link)) {
         fileData[i].phone = data.phone;
         fileDataPhone.push(fileData[i]);
@@ -92,9 +104,13 @@ const removeDuplicateAnnonces = async (req, res) => {
         await apiCall(params);
 
         fs.writeFileSync("announcesWithPhone.json", JSON.stringify(_.uniqWith(fileDataPhone, _.isEqual), null, 2));
+
         
       }
-	fileData.splice(i,1);
+  if(data.link  && fileData[i].linkAnnonce.includes(data.link)){
+        await fileData.splice(i, 1);
+      }
+	//await fileData.splice(i,1);
     }
     fs.writeFileSync("announces.json", JSON.stringify(_.uniqWith(fileData, _.isEqual), null, 2));
 
