@@ -71,7 +71,7 @@ if (ary && ary.length) {
   }
 }else{
 res.send('script 1 done!');
-  } catch (err) {
+  }} catch (err) {
     console.log(err);
   }
 };
@@ -96,7 +96,7 @@ const removeDuplicateAnnonces = async (req, res) => {
           fileData[i].phone = data.phone;
           fileDataPhone.push(fileData[i]);
           console.log("phone added");
- if (compare <= 8) {          
+ if (compare <= 3) {          
 let params = {
             id: Date.parse(new Date()) / 1000,
             linkAnnonce: fileData[i].linkAnnonce,
@@ -122,7 +122,7 @@ console.log(data.link)
         //await fileData.splice(i,1);
       }
     
-    fs.writeFileSync("announces.json", JSON.stringify(_.uniqWith(fileData, _.isEqual), null, 2));
+    fs.writeFileSync("announces.json", JSON.stringify(fileData, null, 2));
 
     res.send("Phone added to CSV");
   } catch (err) {
